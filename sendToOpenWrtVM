@@ -1,0 +1,1 @@
+scp -r -P 2200 luci root@localhost:/usr/lib/lua/
