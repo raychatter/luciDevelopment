@@ -49,6 +49,10 @@ local function _checkid(id)
 	return not not (id and #id == 32 and id:match("^[a-fA-F0-9]+$"))
 end
 
+function myWrite(name, data)
+    _write(name, luci.util.get_bytecode(data))
+end
+
 --- Write session data to a session file.
 -- @param id	Session identifier
 -- @param data	Session data table

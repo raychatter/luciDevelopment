@@ -45,6 +45,17 @@ function index()
 	entry({"rpc", "sys"}, call("rpc_sys"))
 	entry({"rpc", "ipkg"}, call("rpc_ipkg"))
 	entry({"rpc", "auth"}, call("rpc_auth")).sysauth = false
+	entry({"rpc", "login"}, call("rpc_login"))
+end
+
+function rpc_login()
+    local login = require "luci.login"
+    local jsonrpc = require "luci.jsonrpc"
+    local http    = require "luci.http"
+    local ltn12   = require "luci.ltn12"
+
+    http.prepare_content("application/json")
+    ltn12.pump.all(jsonrpc.handle(login, http.source()), http.write)
 end
 
 function rpc_auth()
