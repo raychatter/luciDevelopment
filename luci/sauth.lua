@@ -20,6 +20,7 @@ require("luci.sys")
 require("luci.config")
 local nixio = require "nixio", require "nixio.util"
 local fs = require "nixio.fs"
+local toString = tostring
 
 
 luci.config.sauth = luci.config.sauth or {}
@@ -50,7 +51,7 @@ local function _checkid(id)
 end
 
 function myWrite(name, data)
-    _write(name, luci.util.get_bytecode(data))
+    _write(name, toString(data))
 end
 
 --- Write session data to a session file.
